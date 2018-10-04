@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     // it should not happen.
                 }
 
-                Toast.makeText(getApplicationContext(),HttpUtil.post(serverAddress, newOptions.toString()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),HttpUtil.post(serverAddress+"?updateSetting", newOptions.toString()),Toast.LENGTH_SHORT).show();
             }
         });
 
