@@ -12,21 +12,21 @@ public class FileUtil {
 
     private final static String filePath = "Android/data/com.modifyfgo.xfgo/files/";
 
-    public static String saveFileToSDcard(String filename, String info) {
+    public static void saveFileToSDcard(String filename, String info) throws IOException {
         filename = filePath + filename;
-        String result = "false";
         File file = new File(Environment.getExternalStorageDirectory(), filename);
+        if(!file.exists()){
+            file.createNewFile();
+        }
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 fileOutputStream.write(info.getBytes());
-                result = "true";
                 fileOutputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return result;
     }
 
     public static String getFileDataFromSdcard(String filename) {

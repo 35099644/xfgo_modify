@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.security.cert.CertificateException;
 import javax.security.cert.X509Certificate;
@@ -176,7 +177,11 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                FileUtil.saveFileToSDcard("options",newOptions.toString());
+                try {
+                    FileUtil.saveFileToSDcard("options", newOptions.toString());
+                }catch(IOException e){
+                    // it should not happen.
+                }
 
                 Toast.makeText(getApplicationContext(),HttpUtil.post(serverAddress, newOptions.toString()),Toast.LENGTH_SHORT).show();
             }
